@@ -1,7 +1,7 @@
 # Welcome to Genius Games 2025 - Technical Challenge!
 # ==============================================
 # This is a coding challenge where you need to complete the missing parts of the code.
-# You have 30 minutes to complete as many challenges as you can.
+# You have 45 minutes to complete as many challenges as you can.
 # Each challenge is independent, so you can work on them in any order.
 
 import os
@@ -25,8 +25,8 @@ def test_doubler():
     print("\nTesting Number Doubler...")
     print("=" * 40)
     
-    test_numbers = [2, 5, 10, 0, -3]
-    expected_results = [4, 10, 20, 0, -6]
+    test_numbers = [5, 10]  # Two test cases
+    expected_results = [10, 20]  # Expected results
     
     score = 0
     total_tests = len(test_numbers)
@@ -59,17 +59,24 @@ def calculate(num1, num2, operation):
     # TODO: Complete this function to perform basic operations
     # HINT: You need to add the correct operation for each case
     # HINT: Look at the test cases to see what each operation should do
+    # BONUS CHALLENGE: Try implementing the remainder operation (%)
+    # HINT: For remainder, think about what's left after division
     
     if operation == "+":
         # Write your code here:
         return num1  # <-- This line needs to be fixed!
     elif operation == "-":
         # Write your code here:
-        return num1  # <-- This line needs to be fixed!
+        return num1 - num2  # <-- This line is already correct!
     elif operation == "*":
-        return num1 * num2  # This one is correct!
+        return num1 * num2  # <-- This one is already correct!
     elif operation == "/":
-        return num1 / num2  # This one is correct!
+        # Write your code here:
+        return num1 / num2  
+    # BONUS: Try implementing the remainder operation
+    # elif operation == "%":
+    #     # Write your code here:
+    #     return num1  # <-- This line needs to be fixed! (Hint: What's left after division?)
     else:
         return "Invalid operation"
 
@@ -78,12 +85,13 @@ def test_calculator():
     print("=" * 40)
     
     test_cases = [
-        (10, 5, "+", 15),  # Addition
-        (10, 5, "-", 5),   # Subtraction
-        (10, 5, "*", 50),  # Multiplication
-        (10, 5, "/", 2),   # Division
-        (0, 5, "+", 5),    # Edge case: zero
-        (-5, 3, "*", -15)  # Edge case: negative numbers
+        (10, 5, "+", 15),    # Addition
+        (10, 5, "-", 5),     # Subtraction
+        (10, 5, "*", 50),    # Multiplication
+        (10, 5, "/", 2),     # Division
+        # BONUS: We also need to remainder operators
+        (10, 3, "%", 1),     # Remainder (10 divided by 3 leaves remainder 1)
+        (7, 4, "%", 3),      # Remainder (7 divided by 4 leaves remainder 3)
     ]
     
     score = 0
@@ -105,6 +113,10 @@ def test_calculator():
                 print("HINT: Addition means adding two numbers together!")
             elif op == "-":
                 print("HINT: Subtraction means taking one number away from another!")
+            elif op == "/":
+                print("HINT: Division means how many times one number fits into another!")
+            # elif op == "%":
+            #     print("HINT: Remainder means what's left after division! For example, 10 % 3 = 1 because 3 goes into 10 three times with 1 left over!")
     
     print("\n" + "=" * 40)
     print(f"Final Score: {score}/{total_tests}")
@@ -112,6 +124,7 @@ def test_calculator():
     
     if score == total_tests:
         print("\nCongratulations! You've fixed the calculator!")
+        print("BONUS CHALLENGE: Try implementing the remainder operation (%)!")
     else:
         print("\nKeep trying! Look at the failed tests for hints.")
 
@@ -123,12 +136,13 @@ def fizzbuzz(number):
     # HINT: Use the modulo operator (%) to check for divisibility
     
     # Write your code here:
-    if number % 3 == 0 and number % 5 == 0:
-        return "FizzBuzz"
+    # Are these in the correct order?
+    if number % 5 == 0:
+        return "Buzz"
+    elif number % 3 == 0 and number % 5 == 0:
+        return "Fizz"
     elif number % 3 == 0:
         return "Fizz"
-    elif number % 5 == 0:
-        return "Buzz"
     else:
         return str(number)
 
@@ -137,13 +151,9 @@ def test_fizzbuzz():
     print("=" * 40)
     
     test_cases = [
-        (3, "Fizz"),      # Multiple of 3
-        (5, "Buzz"),      # Multiple of 5
-        (15, "FizzBuzz"), # Multiple of both 3 and 5
-        (1, "1"),         # Not a multiple of 3 or 5
-        (30, "FizzBuzz"), # Another multiple of both
-        (9, "Fizz"),      # Another multiple of 3
-        (10, "Buzz")      # Another multiple of 5
+        (3, "Fizz"),      # Test 1: Multiple of 3
+        (5, "Buzz"),      # Test 2: Multiple of 5
+        (15, "FizzBuzz"), # Test 3: Multiple of both 3 and 5
     ]
     
     score = 0
@@ -163,6 +173,7 @@ def test_fizzbuzz():
             print("✗ Test failed!")
             if num % 3 == 0 and num % 5 == 0:
                 print("HINT: Numbers divisible by both 3 and 5 should return 'FizzBuzz'!")
+                print("HINT: The order of conditions matters!")
             elif num % 3 == 0:
                 print("HINT: Numbers divisible by 3 should return 'Fizz'!")
             elif num % 5 == 0:
@@ -182,7 +193,7 @@ def print_header():
     print("Genius Games 2025 - Technical Challenge".center(60))
     print("="*60)
     print("\nWelcome to the coding challenge!")
-    print("You have 30 minutes to complete the challenges.")
+    print("You have 45 minutes to complete the challenges.")
     print("Each challenge is independent - work on them in any order.")
     print("\nAvailable Challenges:")
     print("1. Number Doubler (Easy)")
@@ -201,7 +212,7 @@ def main():
     print_header()
     
     start_time = time.time()
-    time_limit = 30 * 60  # 30 minutes in seconds
+    time_limit = 45 * 60  # 45 minutes in seconds
     
     # Run all tests immediately
     print("\nRunning all tests...")
